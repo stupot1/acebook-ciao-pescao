@@ -20,3 +20,23 @@
    color:#000;
    overflow-x:hidden;
  }
+
+ #main-container{
+  justify-content: center;
+ }
+
+ .posts-wrapper{
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+    position: center;
+ }
+
+ .message{
+   font-style: italic;
+ }
+
+ .message-container{
+   margin: auto;
+   width: 70%;
+ }

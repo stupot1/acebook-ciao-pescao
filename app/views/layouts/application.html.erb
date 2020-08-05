@@ -7,10 +7,18 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%# see you on the flipper side %>
-    <% if logged_in? %>
-        <h1>You are Logged In, <%= current_user.email %></h1>
-        <%= button_to "Log Out", '/logout', method: :get %>
-    <%end%>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <% if logged_in? %>
+            <h1>You are Logged In, <%= current_user.email %></h1>
+            <%= button_to "Log Out", '/logout', method: :get %>
+          <%end%>
+          <a class="navbar-brand" href="/">Yes</a>
+        </div>
+      </div>
+    </nav>
+    
 
 
 

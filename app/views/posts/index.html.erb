@@ -2,28 +2,66 @@
   <h2><%= flash[:messages] %></h2>
 <% end %>
 
-<% @posts.each do |post| %>
-  <div id="<%= post.id%>" class="posts">
-    <p><%= post.message %></p>
-    <p><%= post.user.email %></p>
-    <p><%= (post.created_at + 1.hours).strftime('%d-%m-%y %H:%M:%S') %></p>
-      <%if (post.created_at + 1.hours + 10.minutes).strftime('%Y-%m-%d %H:%M:%S') > @time.to_formatted_s(:db) && (current_user.id == post.user_id) %>
-        <%= button_to edit_post_path(post.id), method: :get do %>
-          Update post
-        <% end %>
-      <% end %>
+<div class="posts-wrapper">
+  <div class="container border rounded mx-auto">
+    <div class="row text-justify">
+      <div class="message-container" style="padding: 15px">
+        <h1 class="message">This is a long message to celebrate me doing this</h1>
+          <div class="row mb-2">
+            <div class="col-md-6">
+              <p>Date</p>
+            </div>
+            <div class="col-md-6 text-right">
+              <p>Name</p>
+            </div>
+          </div>
 
-      <%if current_user.id == post.user_id %>
-        <%= button_to post_path(post), method: :delete do %>
-          Delete post
-        <% end %>
-      <% end %>
-
+          <div class="row mb-3">
+            <div class="col text-right">
+              <%= button_to '/', method: :get, class:'btn btn-danger btn-block' do %>
+               Delete
+               <% end %>
+            </div>
+            <div class="col text-right">
+             <%= button_to '/', method: :get, class:'btn btn-primary btn-block' do %>
+              Update
+              <% end %>
+            </div>
+            <div class="col text-right">
+             <%= button_to '/', method: :get, class:'btn btn-success btn-block' do %>
+              Visit Wall
+              <% end %>
+            </div>
+          </div>
+      </div>
+    </div>
+    
       
   </div>
+</div>
 
-<% end %>
+<div id="main-container" class= "container">
+  <% @posts.each do |post| %>
+    <div id="<%= post.id%>" class="posts">
+      <div class="row">
+      <div id="message" class=".col-md-6">
+        <%= post.message %>
+        </div>
+      <div id="name" class=".col-md-3"><%= post.user.email %></div>
+      <div id="time" class=".col-md-3"><%= (post.created_at + 1.hours).strftime('%d-%m-%y %H:%M:%S') %></p>
+        <%if (post.created_at + 1.hours + 10.minutes).strftime('%Y-%m-%d %H:%M:%S') > @time.to_formatted_s(:db) && (current_user.id == post.user_id) %>
+          <%= button_to edit_post_path(post.id), method: :get do %>
+            Update post
+          <% end %>
+        <% end %>
 
-<%= link_to new_post_path do %>
-  New post
-<% end %>
+        <%if current_user.id == post.user_id %>
+          <%= button_to post_path(post), method: :delete do %>
+            Delete post
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
