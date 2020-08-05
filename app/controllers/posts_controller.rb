@@ -1,14 +1,17 @@
 class PostsController < ApplicationController
   def new
+    p "in posts#new session wall_id = " + session[:wall_id].to_s
     @post = Post.new
   end
 
   def create
+    p "in posts#create session wall_id = " + session[:wall_id].to_s
     @post = Post.create(post_params)
     redirect_to posts_url
   end
 
   def index
+    session[:wall_id] = params[:user_id]
     @time = Time.new
     @posts = Post.all.reverse
   end
@@ -39,7 +42,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:message).merge(user_id: current_user.id)
+    params.require(:post).permit(:message).merge(user_id: current_user.id).merge(wall_id: session[:wall_id])
   end
 
 end
