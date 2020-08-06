@@ -9,8 +9,9 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+//= require jquery
 //= require rails-ujs
+//= require bootstrap-sprockets
 //= require_tree .
 // <![CDATA[
 var colours=new Array("##00FFFF", "#FFFFFF", "#d1edf2", "#afeeee", "#FFFFFF"); // #008080 ##00FFFFcolours for top, right, bottom and left borders and background of bubbles
